@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SMHL Sportsbook</title>
   <style>
     body {
@@ -96,11 +96,13 @@
       border-radius: 4px;
       margin-top: 10px;
       pointer-events: auto;
+      cursor: pointer;
     }
 
     .send-button.disabled {
       background-color: #ccc;
       pointer-events: none;
+      cursor: default;
     }
 
     .parlay-summary {
@@ -130,30 +132,30 @@
       <tr>
         <td>Lakers</td>
         <td>
-          -2.5 (-110)<br>
+          -2.5 (-110)<br />
           <button class="bet-button" onclick="addToSlip('Lakers -2.5 (-110)')">Add</button>
         </td>
         <td>
-          Over 220.5 (-110)<br>
+          Over 220.5 (-110)<br />
           <button class="bet-button" onclick="addToSlip('Over 220.5 (-110)')">Add</button>
         </td>
         <td>
-          -120<br>
+          -120<br />
           <button class="bet-button" onclick="addToSlip('Moneyline Lakers -120')">Add</button>
         </td>
       </tr>
       <tr>
         <td>Celtics</td>
         <td>
-          +2.5 (-110)<br>
+          +2.5 (-110)<br />
           <button class="bet-button" onclick="addToSlip('Celtics +2.5 (-110)')">Add</button>
         </td>
         <td>
-          Under 220.5 (-110)<br>
+          Under 220.5 (-110)<br />
           <button class="bet-button" onclick="addToSlip('Under 220.5 (-110)')">Add</button>
         </td>
         <td>
-          +105<br>
+          +105<br />
           <button class="bet-button" onclick="addToSlip('Moneyline Celtics +105')">Add</button>
         </td>
       </tr>
@@ -164,30 +166,30 @@
       <tr>
         <td>Chiefs</td>
         <td>
-          -1.5 (-110)<br>
+          -1.5 (-110)<br />
           <button class="bet-button" onclick="addToSlip('Chiefs -1.5 (-110)')">Add</button>
         </td>
         <td>
-          Over 49.5 (-110)<br>
+          Over 49.5 (-110)<br />
           <button class="bet-button" onclick="addToSlip('Over 49.5 (-110)')">Add</button>
         </td>
         <td>
-          -130<br>
+          -130<br />
           <button class="bet-button" onclick="addToSlip('Moneyline Chiefs -130')">Add</button>
         </td>
       </tr>
       <tr>
         <td>Eagles</td>
         <td>
-          +1.5 (-110)<br>
+          +1.5 (-110)<br />
           <button class="bet-button" onclick="addToSlip('Eagles +1.5 (-110)')">Add</button>
         </td>
         <td>
-          Under 49.5 (-110)<br>
+          Under 49.5 (-110)<br />
           <button class="bet-button" onclick="addToSlip('Under 49.5 (-110)')">Add</button>
         </td>
         <td>
-          +110<br>
+          +110<br />
           <button class="bet-button" onclick="addToSlip('Moneyline Eagles +110')">Add</button>
         </td>
       </tr>
@@ -198,30 +200,30 @@
       <tr>
         <td>Yankees</td>
         <td>
-          -1.5 (+135)<br>
+          -1.5 (+135)<br />
           <button class="bet-button" onclick="addToSlip('Yankees -1.5 (+135)')">Add</button>
         </td>
         <td>
-          Over 8.5 (-105)<br>
+          Over 8.5 (-105)<br />
           <button class="bet-button" onclick="addToSlip('Over 8.5 (-105)')">Add</button>
         </td>
         <td>
-          -145<br>
+          -145<br />
           <button class="bet-button" onclick="addToSlip('Moneyline Yankees -145')">Add</button>
         </td>
       </tr>
       <tr>
         <td>Red Sox</td>
         <td>
-          +1.5 (-155)<br>
+          +1.5 (-155)<br />
           <button class="bet-button" onclick="addToSlip('Red Sox +1.5 (-155)')">Add</button>
         </td>
         <td>
-          Under 8.5 (-115)<br>
+          Under 8.5 (-115)<br />
           <button class="bet-button" onclick="addToSlip('Under 8.5 (-115)')">Add</button>
         </td>
         <td>
-          +125<br>
+          +125<br />
           <button class="bet-button" onclick="addToSlip('Moneyline Red Sox +125')">Add</button>
         </td>
       </tr>
@@ -240,7 +242,8 @@
     const oddsList = [];
 
     function parseAmericanOdds(betText) {
-      const match = betText.match(/([-+]\d+)/);
+      // Extract the number inside parentheses, e.g. (-110) or (+105)
+      const match = betText.match(/\(([-+]\d+)\)/);
       return match ? parseInt(match[1]) : null;
     }
 
@@ -292,9 +295,14 @@
 
       slip.classList.add('show');
       betSlipList.innerHTML = '';
+
       betSlip.forEach((bet, index) => {
         const odds = oddsList[index];
-        betSlipList.innerHTML += `<div class="bet-item">${index + 1}. ${bet} <span class="bet-odds">(Odds: ${odds > 0 ? "+" + odds : odds})</span></div>`;
+        betSlipList.innerHTML += `
+          <div class="bet-item">
+            ${index + 1}. ${bet} <span class="bet-odds">(Odds: ${odds > 0 ? "+" + odds : odds})</span>
+            <button onclick="removeBet(${index})" style="margin-left:10px; font-size:12px; padding:2px 6px; cursor:pointer;">Remove</button>
+          </div>`;
       });
 
       const parlayOdds = calculateParlayOdds(oddsList);
@@ -306,6 +314,13 @@
         sendButton.classList.remove('disabled');
       }
     }
+
+    function removeBet(index) {
+      betSlip.splice(index, 1);
+      oddsList.splice(index, 1);
+      updateBetSlip();
+    }
   </script>
+
 </body>
 </html>
