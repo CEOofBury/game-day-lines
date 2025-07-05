@@ -8,49 +8,113 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #f2f2f2;
+      margin: 0;
       padding: 20px;
     }
+
     h1 {
       text-align: center;
       color: #222;
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       background-color: #fff;
       margin-top: 20px;
     }
+
     th, td {
       padding: 10px;
       border: 1px solid #ccc;
       text-align: center;
     }
+
     th {
       background-color: #111;
       color: #fff;
     }
+
     .matchup-header {
-      background-color: #444;
+      background-color: #333;
       color: #fff;
       font-weight: bold;
       text-align: center;
     }
+
     .bet-button {
-      display: inline-block;
       background-color: #28a745;
       color: white;
-      padding: 6px 10px;
+      padding: 5px 10px;
       font-size: 14px;
       border: none;
-      text-decoration: none;
       border-radius: 4px;
-      margin-top: 5px;
+      cursor: pointer;
+      margin-top: 4px;
     }
+
     .bet-button:hover {
       background-color: #218838;
     }
-    .team-name {
+
+    .betslip {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      padding: 15px;
+      display: none;
+    }
+
+    .betslip.show {
+      display: block;
+    }
+
+    .betslip h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .bet-item {
+      border-bottom: 1px solid #ddd;
+      padding: 5px 0;
+    }
+
+    .bet-odds {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .send-button {
+      display: block;
+      width: 100%;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 10px;
+      pointer-events: auto;
+    }
+
+    .send-button.disabled {
+      background-color: #ccc;
+      pointer-events: none;
+    }
+
+    .parlay-summary {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #ddd;
       font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .betslip {
+        margin: 10px;
+        width: auto;
+      }
     }
   </style>
 </head>
@@ -59,64 +123,189 @@
   <h1>SMHL Sportsbook</h1>
 
   <table>
-    <tr>
-      <th>Matchup</th>
-      <th>Spread</th>
-      <th>Total</th>
-      <th>Moneyline</th>
-    </tr>
+    <tbody>
+      <tr>
+        <td class="matchup-header" colspan="4">Lakers vs Celtics</td>
+      </tr>
+      <tr>
+        <td>Lakers</td>
+        <td>
+          -2.5 (-110)<br>
+          <button class="bet-button" onclick="addToSlip('Lakers -2.5 (-110)')">Add</button>
+        </td>
+        <td>
+          Over 220.5 (-110)<br>
+          <button class="bet-button" onclick="addToSlip('Over 220.5 (-110)')">Add</button>
+        </td>
+        <td>
+          -120<br>
+          <button class="bet-button" onclick="addToSlip('Moneyline Lakers -120')">Add</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Celtics</td>
+        <td>
+          +2.5 (-110)<br>
+          <button class="bet-button" onclick="addToSlip('Celtics +2.5 (-110)')">Add</button>
+        </td>
+        <td>
+          Under 220.5 (-110)<br>
+          <button class="bet-button" onclick="addToSlip('Under 220.5 (-110)')">Add</button>
+        </td>
+        <td>
+          +105<br>
+          <button class="bet-button" onclick="addToSlip('Moneyline Celtics +105')">Add</button>
+        </td>
+      </tr>
 
-    <!-- Lakers vs Celtics -->
-    <tr>
-      <td colspan="4" class="matchup-header">Lakers vs Celtics</td>
-    </tr>
-    <tr>
-      <td class="team-name">Lakers</td>
-      <td>-2.5 (-110)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Lakers%20-2.5%20(-110)">Bet Now</a></td>
-      <td>Over 220.5 (-110)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Lakers%20Over%20220.5%20(-110)">Bet Now</a></td>
-      <td>-120<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Lakers%20ML%20-120">Bet Now</a></td>
-    </tr>
-    <tr>
-      <td class="team-name">Celtics</td>
-      <td>+2.5 (-110)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Celtics%20+2.5%20(-110)">Bet Now</a></td>
-      <td>Under 220.5 (-110)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Celtics%20Under%20220.5%20(-110)">Bet Now</a></td>
-      <td>+105<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Celtics%20ML%20+105">Bet Now</a></td>
-    </tr>
+      <tr>
+        <td class="matchup-header" colspan="4">Chiefs vs Eagles</td>
+      </tr>
+      <tr>
+        <td>Chiefs</td>
+        <td>
+          -1.5 (-110)<br>
+          <button class="bet-button" onclick="addToSlip('Chiefs -1.5 (-110)')">Add</button>
+        </td>
+        <td>
+          Over 49.5 (-110)<br>
+          <button class="bet-button" onclick="addToSlip('Over 49.5 (-110)')">Add</button>
+        </td>
+        <td>
+          -130<br>
+          <button class="bet-button" onclick="addToSlip('Moneyline Chiefs -130')">Add</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Eagles</td>
+        <td>
+          +1.5 (-110)<br>
+          <button class="bet-button" onclick="addToSlip('Eagles +1.5 (-110)')">Add</button>
+        </td>
+        <td>
+          Under 49.5 (-110)<br>
+          <button class="bet-button" onclick="addToSlip('Under 49.5 (-110)')">Add</button>
+        </td>
+        <td>
+          +110<br>
+          <button class="bet-button" onclick="addToSlip('Moneyline Eagles +110')">Add</button>
+        </td>
+      </tr>
 
-    <!-- Chiefs vs Eagles -->
-    <tr>
-      <td colspan="4" class="matchup-header">Chiefs vs Eagles</td>
-    </tr>
-    <tr>
-      <td class="team-name">Chiefs</td>
-      <td>-1.5 (-110)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Chiefs%20-1.5%20(-110)">Bet Now</a></td>
-      <td>Over 49.5 (-110)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Chiefs%20Over%2049.5%20(-110)">Bet Now</a></td>
-      <td>-130<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Chiefs%20ML%20-130">Bet Now</a></td>
-    </tr>
-    <tr>
-      <td class="team-name">Eagles</td>
-      <td>+1.5 (-110)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Eagles%20+1.5%20(-110)">Bet Now</a></td>
-      <td>Under 49.5 (-110)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Eagles%20Under%2049.5%20(-110)">Bet Now</a></td>
-      <td>+110<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Eagles%20ML%20+110">Bet Now</a></td>
-    </tr>
-
-    <!-- Yankees vs Red Sox -->
-    <tr>
-      <td colspan="4" class="matchup-header">Yankees vs Red Sox</td>
-    </tr>
-    <tr>
-      <td class="team-name">Yankees</td>
-      <td>-1.5 (+135)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Yankees%20-1.5%20(+135)">Bet Now</a></td>
-      <td>Over 8.5 (-105)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Yankees%20Over%208.5%20(-105)">Bet Now</a></td>
-      <td>-145<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Yankees%20ML%20-145">Bet Now</a></td>
-    </tr>
-    <tr>
-      <td class="team-name">Red Sox</td>
-      <td>+1.5 (-155)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Red%20Sox%20+1.5%20(-155)">Bet Now</a></td>
-      <td>Under 8.5 (-115)<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Red%20Sox%20Under%208.5%20(-115)">Bet Now</a></td>
-      <td>+125<br><a class="bet-button" href="sms:+16175830712?body=Bet%20Red%20Sox%20ML%20+125">Bet Now</a></td>
-    </tr>
-
+      <tr>
+        <td class="matchup-header" colspan="4">Yankees vs Red Sox</td>
+      </tr>
+      <tr>
+        <td>Yankees</td>
+        <td>
+          -1.5 (+135)<br>
+          <button class="bet-button" onclick="addToSlip('Yankees -1.5 (+135)')">Add</button>
+        </td>
+        <td>
+          Over 8.5 (-105)<br>
+          <button class="bet-button" onclick="addToSlip('Over 8.5 (-105)')">Add</button>
+        </td>
+        <td>
+          -145<br>
+          <button class="bet-button" onclick="addToSlip('Moneyline Yankees -145')">Add</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Red Sox</td>
+        <td>
+          +1.5 (-155)<br>
+          <button class="bet-button" onclick="addToSlip('Red Sox +1.5 (-155)')">Add</button>
+        </td>
+        <td>
+          Under 8.5 (-115)<br>
+          <button class="bet-button" onclick="addToSlip('Under 8.5 (-115)')">Add</button>
+        </td>
+        <td>
+          +125<br>
+          <button class="bet-button" onclick="addToSlip('Moneyline Red Sox +125')">Add</button>
+        </td>
+      </tr>
+    </tbody>
   </table>
+
+  <div id="betslip" class="betslip">
+    <h2>Bet Slip</h2>
+    <div id="betSlipList"></div>
+    <div class="parlay-summary" id="parlaySummary"></div>
+    <a id="sendButton" class="send-button disabled" href="#">Send Bet</a>
+  </div>
+
+  <script>
+    const betSlip = [];
+    const oddsList = [];
+
+    function parseAmericanOdds(betText) {
+      const match = betText.match(/([-+]\d+)/);
+      return match ? parseInt(match[1]) : null;
+    }
+
+    function americanToDecimal(odds) {
+      if (odds > 0) return 1 + odds / 100;
+      return 1 + 100 / Math.abs(odds);
+    }
+
+    function decimalToAmerican(decimal) {
+      if (decimal >= 2) return "+" + Math.round((decimal - 1) * 100);
+      return "-" + Math.round(100 / (decimal - 1));
+    }
+
+    function calculateParlayOdds(oddsArray) {
+      if (oddsArray.length === 0) return null;
+      let decimalProduct = 1;
+      oddsArray.forEach(o => decimalProduct *= americanToDecimal(o));
+      return decimalToAmerican(decimalProduct);
+    }
+
+    function calculatePayout(odds, stake) {
+      if (odds > 0) return ((stake * odds) / 100 + stake).toFixed(2);
+      return ((stake * 100) / Math.abs(odds) + stake).toFixed(2);
+    }
+
+    function addToSlip(bet) {
+      const odds = parseAmericanOdds(bet);
+      if (odds === null) return;
+
+      betSlip.push(bet);
+      oddsList.push(odds);
+      updateBetSlip();
+    }
+
+    function updateBetSlip() {
+      const slip = document.getElementById('betslip');
+      const betSlipList = document.getElementById('betSlipList');
+      const sendButton = document.getElementById('sendButton');
+      const parlaySummary = document.getElementById('parlaySummary');
+
+      if (betSlip.length === 0) {
+        slip.classList.remove('show');
+        sendButton.classList.add('disabled');
+        sendButton.href = "#";
+        betSlipList.innerHTML = '';
+        parlaySummary.innerHTML = '';
+        return;
+      }
+
+      slip.classList.add('show');
+      betSlipList.innerHTML = '';
+      betSlip.forEach((bet, index) => {
+        const odds = oddsList[index];
+        betSlipList.innerHTML += `<div class="bet-item">${index + 1}. ${bet} <span class="bet-odds">(Odds: ${odds > 0 ? "+" + odds : odds})</span></div>`;
+      });
+
+      const parlayOdds = calculateParlayOdds(oddsList);
+      if (parlayOdds) {
+        const payout = calculatePayout(parseInt(parlayOdds), 10);
+        parlaySummary.innerHTML = `Combined Parlay Odds: ${parlayOdds}<br>Potential Payout on $10: $${payout}`;
+        const smsBody = encodeURIComponent('My Bet Slip:\n' + betSlip.join('\n') + `\nCombined Parlay Odds: ${parlayOdds}\nPotential Payout on $10: $${payout}`);
+        sendButton.href = `sms:+16175830712?body=${smsBody}`;
+        sendButton.classList.remove('disabled');
+      }
+    }
+  </script>
 </body>
 </html>
