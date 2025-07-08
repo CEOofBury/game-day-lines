@@ -24,9 +24,12 @@
       text-align: center;
       background-color: var(--navy);
       color: var(--gold);
-      padding: 15px;
-      margin: 0 0 20px 0;
-      font-size: 28px;
+      padding: 25px 15px; /* increased padding */
+      margin: 0 0 25px 0;
+      font-size: 36px; /* bigger font */
+      font-weight: 900;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* subtle shadow */
+      letter-spacing: 1.5px;
     }
 
     table {
@@ -173,69 +176,41 @@
     <thead>
       <tr>
         <th style="width: 25%;">Team</th>
-        <th style="width: 25%;">Spread</th>
+        <th style="width: 25%;">Spread / Run Line</th>
         <th style="width: 25%;">Moneyline</th>
         <th style="width: 25%;">Total</th>
       </tr>
     </thead>
     <tbody>
-
-      <tr><td class="matchup-header" colspan="4">Lakers vs Celtics</td></tr>
+      <!-- Dodgers @ Brewers -->
+      <tr><td class="matchup-header" colspan="4">Dodgers @ Brewers</td></tr>
       <tr>
-        <td>Lakers</td>
-        <td>-2.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Lakers vs Celtics', 'Lakers -2.5 (-110)')">Bet</button></td>
-        <td>-120<br /><button class="bet-button" onclick="addToSlip('Lakers vs Celtics', 'Moneyline Lakers -120')">Bet</button></td>
-        <td>Over 220.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Lakers vs Celtics', 'Over 220.5 (-110)')">Bet</button></td>
+        <td>Dodgers</td>
+        <td>-1.5 (+100)<br /><button class="bet-button" onclick="addToSlip('Dodgers @ Brewers', 'Dodgers -1.5 (+100)')">Bet</button></td>
+        <td>-165<br /><button class="bet-button" onclick="addToSlip('Dodgers @ Brewers', 'Moneyline Dodgers -165')">Bet</button></td>
+        <td>Over 8.5 (-120)<br /><button class="bet-button" onclick="addToSlip('Dodgers @ Brewers', 'Over 8.5 (-120)')">Bet</button></td>
       </tr>
       <tr>
-        <td>Celtics</td>
-        <td>+2.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Lakers vs Celtics', 'Celtics +2.5 (-110)')">Bet</button></td>
-        <td>+105<br /><button class="bet-button" onclick="addToSlip('Lakers vs Celtics', 'Moneyline Celtics +105')">Bet</button></td>
-        <td>Under 220.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Lakers vs Celtics', 'Under 220.5 (-110)')">Bet</button></td>
-      </tr>
-
-      <tr><td class="matchup-header" colspan="4">Chiefs vs Eagles</td></tr>
-      <tr>
-        <td>Chiefs</td>
-        <td>-1.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Chiefs vs Eagles', 'Chiefs -1.5 (-110)')">Bet</button></td>
-        <td>-120<br /><button class="bet-button" onclick="addToSlip('Chiefs vs Eagles', 'Moneyline Chiefs -120')">Bet</button></td>
-        <td>Over 47.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Chiefs vs Eagles', 'Over 47.5 (-110)')">Bet</button></td>
-      </tr>
-      <tr>
-        <td>Eagles</td>
-        <td>+1.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Chiefs vs Eagles', 'Eagles +1.5 (-110)')">Bet</button></td>
-        <td>+105<br /><button class="bet-button" onclick="addToSlip('Chiefs vs Eagles', 'Moneyline Eagles +105')">Bet</button></td>
-        <td>Under 47.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Chiefs vs Eagles', 'Under 47.5 (-110)')">Bet</button></td>
+        <td>Brewers</td>
+        <td>+1.5 (-130)<br /><button class="bet-button" onclick="addToSlip('Dodgers @ Brewers', 'Brewers +1.5 (-130)')">Bet</button></td>
+        <td>+125<br /><button class="bet-button" onclick="addToSlip('Dodgers @ Brewers', 'Moneyline Brewers +125')">Bet</button></td>
+        <td>Under 8.5 (-120)<br /><button class="bet-button" onclick="addToSlip('Dodgers @ Brewers', 'Under 8.5 (-120)')">Bet</button></td>
       </tr>
 
-      <tr><td class="matchup-header" colspan="4">Giants vs Cowboys</td></tr>
+      <!-- Phillies @ Giants -->
+      <tr><td class="matchup-header" colspan="4">Phillies @ Giants</td></tr>
+      <tr>
+        <td>Phillies</td>
+        <td>-1.5 (+125)<br /><button class="bet-button" onclick="addToSlip('Phillies @ Giants', 'Phillies -1.5 (+125)')">Bet</button></td>
+        <td>-140<br /><button class="bet-button" onclick="addToSlip('Phillies @ Giants', 'Moneyline Phillies -140')">Bet</button></td>
+        <td>Over 8.5 (-120)<br /><button class="bet-button" onclick="addToSlip('Phillies @ Giants', 'Over 8.5 (-120)')">Bet</button></td>
+      </tr>
       <tr>
         <td>Giants</td>
-        <td>+3 (-110)<br /><button class="bet-button" onclick="addToSlip('Giants vs Cowboys', 'Giants +3 (-110)')">Bet</button></td>
-        <td>+110<br /><button class="bet-button" onclick="addToSlip('Giants vs Cowboys', 'Moneyline Giants +110')">Bet</button></td>
-        <td>Over 45.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Giants vs Cowboys', 'Over 45.5 (-110)')">Bet</button></td>
+        <td>+1.5 (-155)<br /><button class="bet-button" onclick="addToSlip('Phillies @ Giants', 'Giants +1.5 (-155)')">Bet</button></td>
+        <td>+110<br /><button class="bet-button" onclick="addToSlip('Phillies @ Giants', 'Moneyline Giants +110')">Bet</button></td>
+        <td>Under 8.5 (-120)<br /><button class="bet-button" onclick="addToSlip('Phillies @ Giants', 'Under 8.5 (-120)')">Bet</button></td>
       </tr>
-      <tr>
-        <td>Cowboys</td>
-        <td>-3 (-110)<br /><button class="bet-button" onclick="addToSlip('Giants vs Cowboys', 'Cowboys -3 (-110)')">Bet</button></td>
-        <td>-130<br /><button class="bet-button" onclick="addToSlip('Giants vs Cowboys', 'Moneyline Cowboys -130')">Bet</button></td>
-        <td>Under 45.5 (-110)<br /><button class="bet-button" onclick="addToSlip('Giants vs Cowboys', 'Under 45.5 (-110)')">Bet</button></td>
-      </tr>
-
-      <tr><td class="matchup-header" colspan="4">Packers vs Bears</td></tr>
-      <tr>
-        <td>Packers</td>
-        <td>-4 (-110)<br /><button class="bet-button" onclick="addToSlip('Packers vs Bears', 'Packers -4 (-110)')">Bet</button></td>
-        <td>-150<br /><button class="bet-button" onclick="addToSlip('Packers vs Bears', 'Moneyline Packers -150')">Bet</button></td>
-        <td>Over 43 (-110)<br /><button class="bet-button" onclick="addToSlip('Packers vs Bears', 'Over 43 (-110)')">Bet</button></td>
-      </tr>
-      <tr>
-        <td>Bears</td>
-        <td>+4 (-110)<br /><button class="bet-button" onclick="addToSlip('Packers vs Bears', 'Bears +4 (-110)')">Bet</button></td>
-        <td>+130<br /><button class="bet-button" onclick="addToSlip('Packers vs Bears', 'Moneyline Bears +130')">Bet</button></td>
-        <td>Under 43 (-110)<br /><button class="bet-button" onclick="addToSlip('Packers vs Bears', 'Under 43 (-110)')">Bet</button></td>
-      </tr>
-
     </tbody>
   </table>
 
